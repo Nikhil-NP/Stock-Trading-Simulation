@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+
+
+{% block title %}
+History
+{% endblock %}
+
+
+{% block main %}
+<table style="width: 49%; margin: auto;">
+    <tr>
+        <td><h5><b><i>transaction History</i></b></h5></td>
+    </tr>
+</table>
+{% if rows %}
+<div style="width: 70%; margin: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Stock symbol</th>
+                <th>Number of shares</th>
+                <th>Type of transaction</th>
+                <th>price during exicution</th>
+                <th> date and time </th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for row in rows%}<!--this is the jinja code to automatically display content -->
+            <tr>
+                <td>{{row.stock_symbol}}</td><!--speciing the content to show like -->
+                <td>{{row.number_of_shares}}</td>
+                <td>{{row.type}}</td>
+                <td>{{row.price|round(2)|usd}}</td>
+                <td>{{row.datetime }}</td>
+
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p>You currently have no transaction in your profile to showcase  </p>
+{% endif %}
+
+
+{% endblock %}

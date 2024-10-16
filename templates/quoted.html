@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title  %}
+quoted
+{%  endblock %}
+{% block main %}
+
+    <table style="width : auto;">
+        <tr>
+            <td><p>Symbol: {{ stock.symbol }}</p></td>
+        </tr>
+        <tr>
+            <td><p>Price: {{price}}</p></td>
+        </tr>
+    </table>
+
+
+
+{% endblock %}

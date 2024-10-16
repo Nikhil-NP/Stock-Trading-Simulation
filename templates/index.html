@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+
+
+{% block title %}
+HOME
+{% endblock %}
+
+
+{% block main %}
+
+<table>
+        <tr>
+            <td><h5><b><i>Portfolio</i></b></h5></td>
+        </tr>
+        <tr>
+            {% if stocks %}
+            <td><h6><b> Name:{{username}}</b></h6></td>
+            {% endif %}
+        </tr>
+</table>
+{% if stocks %}
+<table  style="margin-left: auto; margin-right: auto;">
+
+        <thead>
+            <tr>
+                <th>Symbol  </th>
+                <th>Curret Price</th>
+                <th>No of shares </th>
+                <th>Holding value </th>
+                <th>Balance</th>
+                <th>Grand Total</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td> {{stock.symbol}} </td>
+                <td>{{stock.price}}</td>
+                <td>{{stock.number_of_shares}}</td>
+                <td>{{stock.holdings_value|round(2)|usd}}</td>
+                {% endfor %}
+                <td>{{cash|usd}}</td>
+                <td>{{gt|usd}}</td>
+                <!--formating floating point no with 2 decimal place and dollar sign-->
+            </tr>
+
+        </tbody>
+    </table>
+{% else %}
+    <p>You currently have no portfolio in your profile to showcase  </p>
+    <p>Funds Available : ${{cash}}</p>
+{% endif %}
+{% endblock %}
